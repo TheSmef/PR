@@ -1,0 +1,39 @@
+﻿@model Практика_по_РПМ.Models.User
+@{
+    ViewData["Title"] = "Добавить пользователя";
+}
+<form asp-action="create" asp-controller="home">
+    <div class="form-ground">
+        <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="text" asp-for="Login" placeholder="Login" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="text" asp-for="Role_Id" placeholder="Role_ID" class="form-control" />
+    </div>
+
+
+    <div class="form-ground">
+        <input type="text" asp-for="birth_date" placeholder="Birth date" class="form-control" />
+    </div>
+    <div class="form-ground">
+        <input type="text" asp-for="id_Image" placeholder="Image" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="text" asp-for="Description" placeholder="Description" class="form-control" />
+    </div>
+
+
+    <div class="form-ground">
+        <input type="submit" value="Добавить" class="btn btn-group" />
+    </div>
+
+</form>

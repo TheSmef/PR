@@ -1,0 +1,90 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Post";
+}
+
+<body>
+
+    <div class="">
+        <div class="container">
+            <div class="container">
+                <form asp-action="Index" asp-controller="Home">
+                    <input type="submit" value="Users">
+                </form>
+                <form asp-action="Image" asp-controller="Home">
+                    <input type="submit" value="Images">
+                </form>
+                <form method="get" asp-action="index" class="validate-form">
+
+                    <div class="form-inline form-group container">
+                        <label class="control-label">ID: </label>
+                        <input type="number" value="@Model.FilterViewPost.SelectId" name="id" min="1" class="form-control" />
+                        <label class="control-label">Login: </label>
+                        <input type="text" value="@Model.FilterViewPost.SelectTitle" name="login" class="form-control" />
+
+                        <input type="submit" value="Поиск" class="btn" />
+                    </div>
+                </form>
+
+                <table class="table select2-container--above ">
+
+                    <tr>
+
+
+                        <td>
+                            <a asp-action="Post" asp-route-sortOrder="@Model.SortViewPost.IdSort" style="color:black">
+                                Id
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Post" asp-route-sortOrder="@Model.SortViewPost.TitleSort" style="color:black">
+                                Title
+                            </a>
+                        </td>
+
+
+                        <td>
+                            Date
+                        </td>
+
+                    </tr>
+                    @foreach (var item in Model.Posts)
+                    {
+                        <tr class="wrap-login100">
+                            <td>@item.id</td>
+                            <td>@item.Title</td>
+                            <td>@item.Date</td>
+
+                            <td><a asp-action="detailsPost" asp-controller="home" asp-route-id="@item.id">Подробнее</a></td>
+                            <td><a asp-action="deletePost" asp-controller="home" asp-route-id="@item.id">X</a></td>
+                        </tr>
+                    }
+                </table>
+
+                @if (Model.PageViewModel.HasPreviousPage)
+                {
+                    <a asp-action="index"
+                       asp-route-page="@(Model.PageViewModel.PageNumber-1)"
+                       asp-route-id="@(Model.FilterViewPost.SelectId)"
+                       asp-route-login-="@(Model.FilterViewPost.SelectTitle)"
+                       asp-route-sortOrder="@(Model.SortViewModel.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Back</a>
+                }
+                @if (Model.PageViewModel.HasNextPage)
+                {
+                    <a asp-action="index"
+                       asp-route-page="@(Model.PageViewModel.PageNumber+1)"
+                       asp-route-id="@(Model.FilterViewPost.SelectId)"
+                       asp-route-login-="@(Model.FilterViewPost.SelectTitle)"
+                       asp-route-sortOrder="@(Model.SortViewPost.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Forward</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

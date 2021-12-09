@@ -1,0 +1,23 @@
+﻿@model Post
+
+@{
+    ViewData["Title"] = "Добавить пост";
+}
+<body>
+    <form enctype='multipart/form-data' asp-action="Post" asp-controller="MainView">
+
+        <div class="form-ground">
+            <input type="text" asp-for="Title" placeholder="Title" class="form-control" />
+        </div>
+
+        <div class="form-ground">
+            <input type="text" asp-for="Message" placeholder="Text" class="form-control" />
+        </div>
+        <input type="file" name="files" multiple>
+        <div>
+            <button class="login100-form-btn">
+                Create a Post
+            </button>
+        </div>
+    </form>
+</body>

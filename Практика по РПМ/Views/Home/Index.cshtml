@@ -1,0 +1,96 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body>
+
+    <div class="">
+        <div class="container">
+            <div class="container">
+                <form asp-action="Image" asp-controller="Home">
+                    <input type="submit" value="Images">
+                </form>
+                <form asp-action="Post" asp-controller="Home">
+                    <input type="submit" value="Post">
+                </form>
+                <form method="get" asp-action="index" class="validate-form">
+
+                    <div class="form-inline form-group container">
+                        <label class="control-label">ID: </label>
+                        <input type="number" value="@Model.FilterViewModel.SelectId" name="id" min="1" class="form-control" />
+                        <label class="control-label">Login: </label>
+                        <input type="text" value="@Model.FilterViewModel.SelectLogin" name="login" class="form-control" />
+
+                        <input type="submit" value="Поиск" class="btn" />
+                    </div>
+                </form>
+
+                <table class="table select2-container--above ">
+
+                    <tr>
+
+
+                        <td>
+                            <a asp-action="Index" asp-route-sortORder="@Model.SortViewModel.IdSort" style="color:black" asp-route-id="@Model.FilterViewModel.SelectId" asp-route-login="@Model.FilterViewModel.SelectLogin">
+                                Id
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Index" asp-route-sortORder="@Model.SortViewModel.EmailSort" style="color:black" asp-route-id="@Model.FilterViewModel.SelectId" asp-route-login="@Model.FilterViewModel.SelectLogin">
+                                Email
+                            </a>
+                        </td>
+
+                        <td>
+                            <a asp-action="Index" asp-route-sortORder="@Model.SortViewModel.LoginSort" style="color:black" asp-route-id="@Model.FilterViewModel.SelectId" asp-route-login="@Model.FilterViewModel.SelectLogin">
+                                Login
+                            </a>
+                        </td>
+
+                    </tr>
+                    @foreach (var item in Model.Users)
+                    {
+                        <tr class="wrap-login100">
+                            <td>@item.Id</td>
+                            <td>@item.Email</td>
+                            <td>@item.Login</td>
+
+                            <td><a asp-action="details" asp-controller="home" asp-route-id="@item.Id">Подробнее</a></td>
+                            <td><a asp-action="delete" asp-controller="home" asp-route-id="@item.Id">X</a></td>
+                            <td><a asp-action="edit" asp-controller="home" asp-route-id="@item.Id">Change</a></td>
+                        </tr>
+                    }
+                </table>
+                <form>
+                    <div class="container">
+                        <button class="btn btn-outline-dark" asp-controller="home" asp-action="create">Add user</button>
+                    </div>
+                </form>
+                @if (Model.PageViewModel.HasPreviousPage)
+                {
+                    <a asp-action="index"
+                       asp-route-page="@(Model.PageViewModel.PageNumber-1)"
+                       asp-route-id="@(Model.FilterViewModel.SelectId)"
+                       asp-route-login-="@(Model.FilterViewModel.SelectLogin)"
+                       asp-route-sortOrder="@(Model.SortViewModel.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Back</a>
+                }
+                @if (Model.PageViewModel.HasNextPage)
+                {
+                    <a asp-action="index"
+                       asp-route-page="@(Model.PageViewModel.PageNumber+1)"
+                       asp-route-id="@(Model.FilterViewModel.SelectId)"
+                       asp-route-login-="@(Model.FilterViewModel.SelectLogin)"
+                       asp-route-sortOrder="@(Model.SortViewModel.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Forward</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

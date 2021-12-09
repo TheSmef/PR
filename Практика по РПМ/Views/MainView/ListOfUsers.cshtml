@@ -1,0 +1,87 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "List of Users";
+}
+
+
+<body>
+
+    <div class="">
+        <div class="container">
+            <div class="container">
+                <form method="get" asp-action="ListOfUsers" class="validate-form" asp-controller="MainView">
+
+                    <div class="form-inline form-group container">
+                        <label class="control-label">Login: </label>
+                        <input type="text" value="@Model.FilterViewModel.SelectLogin" name="login" class="form-control" placeholder="Search" />
+
+                        <input type="submit" value="Поиск" class="btn" />
+                    </div>
+                </form>
+
+                <table class="table select2-container--above ">
+
+                    <tr>
+
+                        <td>
+                            <a asp-action="ListOfUsers" asp-route-sortORder="@Model.SortViewModel.EmailSort" style="color:black" asp-route-id="@Model.FilterViewModel.SelectId" asp-route-login="@Model.FilterViewModel.SelectLogin">
+                                Email
+                            </a>
+                        </td>
+
+                        <td>
+                            <a asp-action="ListOfUsers" asp-route-sortORder="@Model.SortViewModel.LoginSort" style="color:black" asp-route-id="@Model.FilterViewModel.SelectId" asp-route-login="@Model.FilterViewModel.SelectLogin">
+                                Login
+                            </a>
+                        </td>
+
+
+                        <td>
+                            Image
+                        </td>
+
+                    </tr>
+                    @foreach (var item in Model.Users)
+                    {
+                <tr class="wrap-login100">
+                    <td>@item.Email</td>
+                    <td>@item.Login</td>
+                    @if (@item.id_Image != null)
+                    {
+                        <td><img src="@item.id_Image.Source" width="50" height="50"></td>
+                    }
+                    else
+                    {
+                        <td><img width="50" height="50"></td>
+                    }
+
+                    <td><a asp-action="UserPage" asp-controller="MainView" asp-route-id="@item.Id">Подробнее</a></td>
+                </tr>
+                    }
+                </table>
+
+                @if (Model.PageViewModel.HasPreviousPage)
+                {
+                    <a asp-action="ListOfUsers"
+                       asp-route-page="@(Model.PageViewModel.PageNumber-1)"
+                       asp-route-login-="@(Model.FilterViewModel.SelectLogin)"
+                       asp-route-sortOrder="@(Model.SortViewModel.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Back</a>
+                }
+                @if (Model.PageViewModel.HasNextPage)
+                {
+                    <a asp-action="ListOfUsers"
+                       asp-route-page="@(Model.PageViewModel.PageNumber+1)"
+                       asp-route-login-="@(Model.FilterViewModel.SelectLogin)"
+                       asp-route-sortOrder="@(Model.SortViewModel.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Forward</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

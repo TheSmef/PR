@@ -1,0 +1,16 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Детали поста";
+}
+
+<body>
+    <form class="text-center">
+        <h1>@Model.Posts.First().Title</h1>
+        <h1>@Model.Posts.First().Date</h1>
+        <h1>@Model.Posts.First().Message</h1>
+        @foreach (var item in Model.PostImage)
+        {
+            <img src="@item.Image_Id.Source" width="300" />
+        }
+    </form>
+</body>

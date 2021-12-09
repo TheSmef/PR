@@ -1,0 +1,73 @@
+﻿@model IndexViewModel
+@{
+    ViewData["Title"] = "Images";
+}
+
+<body>
+
+    <div class="">
+        <div class="container">
+            <div class="container">
+                <form asp-action="Index" asp-controller="Home">
+                    <input type="submit" value="Users">
+                </form>
+                <form asp-action="Post" asp-controller="Home">
+                    <input type="submit" value="Post">
+                </form>
+                <form method="get" asp-action="Image" class="validate-form">
+
+                    <div class="form-inline form-group container">
+                        <label class="control-label">ID: </label>
+                        <input type="number" value="@Model.FilterViewImage.SelectId" name="id" min="1" class="form-control" />
+
+                        <input type="submit" value="Поиск" class="btn" />
+                    </div>
+                </form>
+
+                <table class="table select2-container--above ">
+                    <tr>
+                        <td>
+                            <a asp-action="Image" asp-route-sortORder="@Model.SortViewImage.IdSort" style="color:black" asp-route-id="@Model.FilterViewImage.SelectId">
+                                Id
+                            </a>
+                        </td>
+                        <td>
+                            Source
+                        </td>
+                    </tr>
+                    @foreach (var item in Model.Images)
+                    {
+                        <tr class="wrap-login100">
+                            <td>@item.Id</td>
+                            <td>@item.Source</td>
+
+                            <td><a asp-action="deleteImage" asp-controller="home" asp-route-id="@item.Id">X</a></td>
+                        </tr>
+                    }
+                </table>
+
+                @if (Model.PageViewModel.HasPreviousPage)
+                {
+                    <a asp-action="Image"
+                       asp-route-page="@(Model.PageViewModel.PageNumber-1)"
+                       asp-route-id="@(Model.FilterViewImage.SelectId)"
+                       asp-route-sortOrder="@(Model.SortViewImage.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Back</a>
+                }
+                @if (Model.PageViewModel.HasNextPage)
+                {
+                    <a asp-action="Image"
+                       asp-route-page="@(Model.PageViewModel.PageNumber+1)"
+                       asp-route-id="@(Model.FilterViewImage.SelectId)"
+                       asp-route-sortOrder="@(Model.SortViewImage.Current)"
+                       style="color:black"
+                       class="btn btn-outline-dark">Forward</a>
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</body>

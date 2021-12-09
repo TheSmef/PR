@@ -1,0 +1,39 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Изменить пользователя";
+}
+<form asp-action="edit" asp-controller="MainView" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <span class="login100-form-title">
+        Registration
+    </span>
+    <div class="form-ground">
+        <input type="email" asp-for="Email" placeholder="Email" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="text" asp-for="Login" placeholder="Login" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="date" asp-for="birth_date" placeholder="Birth date" name="datecringe" class="form-control" />
+    </div>
+    <div>
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <div class="form-ground">
+        <input type="text" asp-for="Description" placeholder="Description" class="form-control" />
+    </div>
+
+    <div>
+        <button class="login100-form-btn">
+            Change Data of User
+        </button>
+    </div>
+
+</form>
