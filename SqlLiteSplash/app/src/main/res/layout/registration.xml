@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
+
+    <EditText
+        android:id="@+id/LoginUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textAlignment="center"
+        android:hint="Login"/>
+    <EditText
+        android:id="@+id/PasswordUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/LoginUser"
+        android:hint="Password"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="@id/LoginUser"
+        app:layout_constraintEnd_toEndOf="@id/LoginUser"/>
+    <CheckBox
+        android:id="@+id/roleBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrate as Admin"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/PasswordUser"/>
+
+    <Button
+        android:id="@+id/ButReg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        app:layout_constraintTop_toBottomOf="@id/roleBox"/>
+
+    <Button
+        android:id="@+id/ButBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        app:layout_constraintTop_toBottomOf="@id/ButReg"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
