@@ -29,9 +29,15 @@
         android:text="Authorization"
         app:layout_constraintTop_toBottomOf="@id/PasswordUserAuth"/>
     <Button
+        android:id="@+id/ButScan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan"
+        app:layout_constraintTop_toBottomOf="@id/ButAuth"/>
+    <Button
         android:id="@+id/ButReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registration"
-        app:layout_constraintTop_toBottomOf="@id/ButAuth"/>
+        app:layout_constraintTop_toBottomOf="@id/ButScan"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
